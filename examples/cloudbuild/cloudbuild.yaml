@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'deployment-manager', 'deployments', 'update', 'monitor', '--config=/workspace/config.yaml', '--preview' ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'deployment-manager', 'deployments', 'update', 'monitor' ]

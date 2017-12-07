@@ -1,0 +1,10 @@
+imports:
+- path: function.py
+
+resources:
+- name: function
+  type: function.py
+  properties:
+    # Use uuidgen(1) or another method of generating a globally unique name
+    bucket: jackson-hicks
+    timeout: 30s

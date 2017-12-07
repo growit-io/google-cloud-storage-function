@@ -1,0 +1,44 @@
+{
+  "name": "@growit-io/google-cloud-storage-function",
+  "version": "0.2.3",
+  "description": "Background Cloud Function to monitor a Cloud Storage bucket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon watch.js"
+  },
+  "author": "Uwe Stuehler",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^1.4.0",
+    "deepmerge": "^2.0.1",
+    "kraken": "^0.3.3",
+    "mkdirp": "^0.5.1",
+    "request": "^2.83.0",
+    "sharp": "^0.18.4",
+    "stream-buffers": "^3.0.1",
+    "streaming-cache": "^0.5.1"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/growit-io/google-cloud-storage-function.git"
+  },
+  "keywords": [
+    "google",
+    "cloud",
+    "storage",
+    "function",
+    "trigger"
+  ],
+  "bugs": {
+    "url": "https://github.com/growit-io/google-cloud-storage-function/issues"
+  },
+  "homepage": "https://github.com/growit-io/google-cloud-storage-function#readme",
+  "devDependencies": {
+    "chokidar": "^1.7.0",
+    "nodemon": "^1.12.5"
+  }
+}

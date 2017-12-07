@@ -1,0 +1,8 @@
+# Created during local development
+/config.json
+cache/
+content/
+node_modules/
+
+# No need for these in examples
+/examples/*/package-lock.json

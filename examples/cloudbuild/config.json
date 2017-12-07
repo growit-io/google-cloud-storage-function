@@ -1,0 +1,12 @@
+{
+  "directories": {
+    "source": "content",
+    "target": "cache"
+  },
+  "rules": [
+    {
+      "events": ["add", "update"],
+      "actions": ["copy"]
+    }
+  ]
+}

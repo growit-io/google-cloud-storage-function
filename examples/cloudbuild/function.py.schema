@@ -1,0 +1,37 @@
+info:
+  title: Background Cloud Function Template
+  author: Uwe Stuehler
+  description: Creates a Cloud Function that triggers on object change events from a Cloud Storage bucket
+  version: 1.0
+
+imports:
+- path: function.py # Must be a relative path
+
+required:
+- bucket
+
+properties:
+  function:
+    type: string
+    name: monitor
+    description: Unique name of the Cloud Function to deploy within this project
+  bucket:
+    type: string
+    description: Cloud Storage bucket within this project that should trigger the function
+  timeout:
+    type: string
+    default: 30s
+    description: Maximum wall-clock execution time per function call
+
+  sourceRepository:
+    type: string
+    default: monitor
+    description: Name of the Source Repository within this project that contains the function source code
+  sourceBranch:
+    type: string
+    default: master
+    description: Branch of the Source Repository that contains the function source code to deploy
+  sourcePath:
+    type: string
+    default: /
+    description: Directory within the Source Repository that contains the function source code to deploy

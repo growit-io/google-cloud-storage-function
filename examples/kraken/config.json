@@ -1,0 +1,28 @@
+{
+  "kraken": {
+    "api_key": "YOUR_API_KEY",
+    "api_secret": "YOUR_API_SECRET"
+  },
+  "directories": {
+    "source": "content",
+    "target": "cache"
+  },
+  "actions": {
+    "optimise": {
+      "options": {
+        "kraken": {
+          "lossy": true
+        }
+      }
+    }
+  },
+  "rules": [{
+    "filetypes": ["image"],
+    "events": ["add","update"],
+    "actions": ["optimise"]
+  },{
+    "filetypes": ["image"],
+    "events": ["delete"],
+    "actions": ["deleteCopy"]
+  }]
+}

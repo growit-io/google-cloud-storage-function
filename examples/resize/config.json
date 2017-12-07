@@ -1,0 +1,16 @@
+{
+  "directories": {
+    "source": "content",
+    "target": "cache"
+  },
+  "actions": {
+    "generate": {
+      "options": {
+        "variants": [
+          {"slug": "vga", "width": 640, "height": 480},
+          {"slug": "qvga", "width": 320, "height": 200}
+        ]
+      }
+    }
+  }
+}

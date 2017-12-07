@@ -1,0 +1,17 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "description": "Background Cloud Function to monitor a Cloud Storage bucket",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Your Name",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@growit-io/google-cloud-storage-function": "^0.2.3",
+    "chokidar": "^1.7.0",
+    "nodemon": "^1.12.5"
+  }
+}
