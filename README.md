@@ -29,7 +29,7 @@ exports.monitor = require('@growit-io/google-cloud-storage-function')({
     actions: ['copy']
   },{
     events: ['delete'],
-    actions: ['delete']
+    actions: ['deleteAll']
   }]
 })
 ```
