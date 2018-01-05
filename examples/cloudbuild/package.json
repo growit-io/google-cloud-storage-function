@@ -9,6 +9,6 @@
   "author": "Your Name",
   "license": "UNLICENSED",
   "dependencies": {
-    "@growit-io/google-cloud-storage-monitor": "^0.2.3"
+    "@growit-io/google-cloud-storage-function": "^0.2.3"
   }
 }
