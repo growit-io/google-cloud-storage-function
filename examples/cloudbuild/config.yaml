@@ -6,5 +6,11 @@ resources:
   type: function.py
   properties:
     # Use uuidgen(1) or another method of generating a globally unique name
-    bucket: jackson-hicks
+    function: monitor
+    # Adjust source repository name and path
+    sourceRepository: monitor
+    sourcePath: examples/cloudbuild
+    # Adjust the bucket name
+    bucket: overarch-busybody
+    # Increase the timeout if your processing may take longer than 30s
     timeout: 30s
