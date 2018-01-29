@@ -1,3 +1,6 @@
+# JetBrains IDE files
+/.idea/
+
 # Created during local development
 /config.json
 cache/
