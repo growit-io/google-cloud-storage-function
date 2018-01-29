@@ -4,8 +4,9 @@
   "description": "Background Cloud Function to monitor a Cloud Storage bucket",
   "main": "index.js",
   "scripts": {
+    "watch": "nodemon watch.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon watch.js"
+    "release": "standard-version"
   },
   "author": "Uwe Stuehler",
   "license": "ISC",
@@ -39,6 +40,7 @@
   "homepage": "https://github.com/growit-io/google-cloud-storage-function#readme",
   "devDependencies": {
     "chokidar": "^1.7.0",
-    "nodemon": "^1.12.5"
+    "nodemon": "^1.12.5",
+    "standard-version": "^4.3.0"
   }
 }
