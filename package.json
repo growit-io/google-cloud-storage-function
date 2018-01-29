@@ -1,6 +1,6 @@
 {
   "name": "@growit-io/google-cloud-storage-function",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Background Cloud Function to monitor a Cloud Storage bucket",
   "main": "index.js",
   "scripts": {
