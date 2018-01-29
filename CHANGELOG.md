@@ -10,35 +10,3 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **example:** correct dependencies in cloudbuild example ([595db1e](https://github.com/growit-io/google-cloud-storage-function/commit/595db1e))
 * **example:** correct rules in cloudbuild example ([1e23855](https://github.com/growit-io/google-cloud-storage-function/commit/1e23855))
-
-
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-# Changelog
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
-### Fixed
-- Remove debug output.
-
-## [0.2.3] - 2017-12-07
-### Changed
-- The main module exports a Cloud Function constructor to make the event handling logic reusable.
-- Runtime configuration can be supplied to the Cloud Function constructor.
-- Configuration options can now be supplied in the optional file `config.json`.
-- The optimise action falls back to copying the unoptimised source file on error.
-- Storage and config are now non-global to prepare for loading `config.json` from Cloud Storage.
-- Removed most of the hard-coded default configuration (image actions and rules).
-
-[Unreleased]: https://github.com/growit-io/google-cloud-storage-function/compare/v0.2.3...HEAD
-[0.2.3]: https://github.com/growit-io/google-cloud-storage-function/commits/v0.2.3
