@@ -1,0 +1,31 @@
+language: node_js
+
+node_js:
+  - 7
+  - 6
+  - 4
+
+script: 'npm run ci'
+
+before_install:
+  # Create .npmrc
+  - npm i -g makeshift && makeshift -s @growit-io -r registry.npmjs.org
+  # Install Google CLoud SDK
+  - export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+  - echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  - sudo apt-get -qq update && sudo apt-get -qq -y install -V google-cloud-sdk
+  # Activate service account
+  - printf '%s' "$GCLOUD_TOKEN" | base64 -d >/tmp/gcloud.json && gcloud auth activate-service-account --key-file=/tmp/gcloud.json >/dev/null 2>&1 && rm /tmp/gcloud.json
+
+deploy:
+  provider: npm
+  email: ustuehler@growit.io
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
+
+notifications:
+  email:
+    on_success: never # default: change
+    on_failure: change # default: always
