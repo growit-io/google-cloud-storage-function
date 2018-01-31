@@ -1,5 +1,6 @@
 // This should match the Basic Usage example in README.md.
 const monitor = require('./index')({
+  dev: true, // The only deviation from the example
   loadConfigFromBucket: false,
   loadConfigFromSource: false,
   directories: {
