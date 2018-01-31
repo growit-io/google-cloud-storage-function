@@ -1,6 +1,17 @@
 const config = require('./config')
 
-describe('config', () => {
-  it('should be loaded with require("./config")', () => {
-  })
+test('config exports a config object', () => {
+  const expected = {
+    config: {
+      logger: {},
+      directories: {},
+      storage: {},
+      kraken: {},
+      filetypes: {},
+      actions: {},
+      rules: []
+    }
+  }
+
+  expect(config).toMatchObject(expected)
 })
