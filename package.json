@@ -40,6 +40,7 @@
   "homepage": "https://github.com/growit-io/google-cloud-storage-function#readme",
   "devDependencies": {
     "chokidar": "^1.7.0",
+    "jest": "^22.1.4",
     "nodemon": "^1.12.5",
     "standard-version": "^4.3.0"
   }
