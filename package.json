@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "watch": "nodemon watch.js",
-    "test": "jest && eslint . --ext .js",
-    "ci": "npm test",
+    "lint": "eslint . --ext .js",
+    "test": "jest",
+    "ci": "npm test && npm run lint",
     "release": "standard-version"
   },
   "author": "Uwe Stuehler",
