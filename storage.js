@@ -61,12 +61,8 @@ function fsInterface (basedir) {
       // Emulate the Cloud Storage Bucket behaviour where it creates missing
       // intermediate directories automatically.
       path = abspath(path)
-      mkdirp(dirname(path), function (err) {
-        if (err) {
-          return cb(err)
-        }
-        return fs.createWriteStream(path)
-      })
+      mkdirp.sync(dirname(path))
+      return fs.createWriteStream(path)
     },
 
     copyFile: function (src, dest, cb) {
@@ -96,7 +92,12 @@ function fsInterface (basedir) {
 
 module.exports = function (config) {
   if (config.dev) {
-    basedir = config.basedir || process.cwd()
+    let basedir
+    if (config.basedir !== undefined && config.basedir) {
+      basedir = config.basedir
+    } else {
+      basedir = process.cwd()
+    }
     return fsInterface(basedir)
   } else {
     return storageInterface(config)
