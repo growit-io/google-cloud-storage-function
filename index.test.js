@@ -42,43 +42,45 @@ describe('Basic Usage example from README.md', () => {
   }
 
   describe('upload of content/test.jpg', () => {
-    it('creates cache/test.jpg', async () => {
+    it('creates cache/test.jpg', () => {
+      // Total number of expected assertions in this test
+      expect.assertions(3)
       // Test setup
       const tempDirPath = fixtures.createTempDirSync()
       const monitor = createMonitor(tempDirPath)
-      await fixtures.copyDir('examples/content', path.join(tempDirPath, 'content'))
-
-      // Preconditions and total number of assertions to expect
-      expect.assertions(3)
-      expect(fs.existsSync(path.join(tempDirPath, 'content/test.jpg'))).toBe(true)
-      expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
-
-      // The function's return value is not defined; it's only important
-      // that the Promise resolves.
-      return monitor(gcsAddEvent).then(() => {
-        expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(true)
+      const setup = fixtures.copyDir('examples/content', path.join(tempDirPath, 'content'))
+      return setup.then(() => {
+        // Preconditions
+        expect(fs.existsSync(path.join(tempDirPath, 'content/test.jpg'))).toBe(true)
+        expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
+        // The function's return value is not defined; it's only important that
+        // the Promise resolves.
+        return monitor(gcsAddEvent).then(() => {
+          expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(true)
+        })
       })
     })
   })
 
   describe('upload and removal of content/test.jpg', () => {
-    it('creates and removes cache/test.jpg', async () => {
+    it('creates and removes cache/test.jpg', () => {
+      // Total number of assertions expected in this test
+      expect.assertions(4)
       // Test setup
       const tempDirPath = fixtures.createTempDirSync()
       const monitor = createMonitor(tempDirPath)
-      await fixtures.copyDir('examples/content', path.join(tempDirPath, 'content'))
-
-      // Preconditions and total number of assertions to expect
-      expect.assertions(4)
-      expect(fs.existsSync(path.join(tempDirPath, 'content/test.jpg'))).toBe(true)
-      expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
-
-      // The rules and events are chosen so that a single copy of the source
-      // file is created and then removed again in the target directory.
-      return monitor(gcsAddEvent).then(() => {
-        expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(true)
-        return monitor(gcsDeleteEvent).then(() => {
-          expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
+      const setup = fixtures.copyDir('examples/content', path.join(tempDirPath, 'content'))
+      return setup.then(() => {
+        // Preconditions
+        expect(fs.existsSync(path.join(tempDirPath, 'content/test.jpg'))).toBe(true)
+        expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
+        // The rules and events are chosen so that a single copy of the source
+        // file is created and then removed again in the target directory.
+        return monitor(gcsAddEvent).then(() => {
+          expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(true)
+          return monitor(gcsDeleteEvent).then(() => {
+            expect(fs.existsSync(path.join(tempDirPath, 'cache/test.jpg'))).toBe(false)
+          })
         })
       })
     })
