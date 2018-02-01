@@ -7,7 +7,7 @@
     "watch": "nodemon watch.js",
     "lint": "eslint . --ext .js",
     "test": "jest",
-    "ci": "npm test && npm run lint",
+    "ci": "npm run-script --silent test && npm run-script --silent  lint",
     "release": "standard-version"
   },
   "author": "Uwe Stuehler",
