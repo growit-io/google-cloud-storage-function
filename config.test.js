@@ -9,7 +9,7 @@ test('config exports a config object', () => {
       kraken: {},
       filetypes: {},
       actions: {},
-      rules: []
+      rules: expect.arrayContaining([])
     }
   }
 
