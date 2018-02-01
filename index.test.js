@@ -1,7 +1,6 @@
 const fs = require('fs')
 const fixtures = require('jest-fixtures')
 const tempDirPath = fixtures.createTempDirSync()
-const examplesDirPath = fixtures.getFixturePathSync(__dirname, 'examples', 'content')
 
 // This should match the Basic Usage example in README.md.
 const monitor = require('./index')({
