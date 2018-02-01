@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "nodemon watch.js",
-    "test": "jest && eslint",
+    "test": "jest && eslint . --ext .js",
     "ci": "npm test",
     "release": "standard-version"
   },

@@ -1,0 +1,2 @@
+# Ignore dependencies (also in subdirectories where node_modules is found)
+node_modules/
