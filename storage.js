@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const Storage = require('@google-cloud/storage')
@@ -41,36 +41,64 @@ function storageInterface (config) {
   }
 }
 
-// In dev mode, watch the local filesystem instead of the Cloud Storage bucket
-function fsInterface () {
+/*
+ * Construct an fs interface that operates relative to the given basedir. In
+ * dev mode, this is used to manipulate the local filesystem instead of a real
+ * Cloud Storage bucket.
+ */
+function fsInterface (basedir) {
+  const dirname = path.dirname
+  const abspath = function (relpath) {
+    return path.join(basedir, relpath)
+  }
+
   return {
-    createReadStream: fs.createReadStream,
-    createWriteStream: function (dest) {
-      let dir = path.dirname(dest)
-      mkdirp.sync(dir)
-      return fs.createWriteStream(dest)
+    createReadStream: function (path) {
+      return fs.createReadStream(abspath(path))
     },
+
+    createWriteStream: function (path) {
+      // Emulate the Cloud Storage Bucket behaviour where it creates missing
+      // intermediate directories automatically.
+      path = abspath(path)
+      mkdirp.sync(dirname(path))
+      return fs.createWriteStream(path)
+    },
+
     copyFile: function (src, dest, cb) {
-      let dir = path.dirname(dest)
-      mkdirp(dir, function (err) {
+      // Emulate the Cloud Storage Bucket behaviour where it creates missing
+      // intermediate directories automatically.
+      src = abspath(src)
+      dest = abspath(dest)
+      mkdirp(dirname(dest), function (err) {
         if (err) {
           return cb(err)
         }
-        fs.copyFile(src, dest, cb)
+        fs.copy(src, dest, cb)
       })
     },
+
     exists: function (path, cb) {
       // fs.exists is deprecated and fs.stat isn't quite what we want to emulate for Cloud Storage
-      cb(fs.existsSync(path))
+      cb(fs.existsSync(abspath(path)))
     },
+
     // XXX: emulate cloud storage behaviour of removing empty directories?
-    unlink: fs.unlink
+    unlink: function (path, cb) {
+      return fs.unlink(abspath(path), cb)
+    }
   }
 }
 
 module.exports = function (config) {
   if (config.dev) {
-    return fsInterface()
+    let basedir
+    if (config.basedir !== undefined && config.basedir) {
+      basedir = config.basedir
+    } else {
+      basedir = process.cwd()
+    }
+    return fsInterface(basedir)
   } else {
     return storageInterface(config)
   }

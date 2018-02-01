@@ -1,9 +1,9 @@
 language: node_js
 
+# The current Node.js version as of Jan 31, 2018 running in Cloud Functions is Node v6.11.5.
 node_js:
   - 7
   - 6
-  - 4
 
 script: 'npm run ci'
 
