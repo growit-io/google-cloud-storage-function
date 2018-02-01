@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const Storage = require('@google-cloud/storage')
@@ -78,7 +78,7 @@ function fsInterface (basedir) {
         if (err) {
           return cb(err)
         }
-        fs.copyFile(src, dest, cb)
+        fs.copy(src, dest, cb)
       })
     },
 
